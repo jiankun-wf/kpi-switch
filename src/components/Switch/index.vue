@@ -4,7 +4,7 @@
       <div class="switch-wrapper-inner">
         <!-- 开关的圆形 -->
         <div class="eath-context">
-          <Eath @toggle="isDark = !isDark" />
+          <Eath @toggle="toggleDark" />
         </div>
         <!-- 朦胧层 -->
         <div class="misty-context">
@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, unref } from "vue";
 import { default as Cloud } from "./Cloud.vue";
 import { default as Misty } from "./Misty.vue";
 import { default as Star } from "./Star.vue";
@@ -58,6 +58,10 @@ import { default as Eath } from "./Eath.vue";
 import { WhiteClouds, BlueClouds, Mistys, CountingStars } from "./options";
 
 const isDark = ref(false);
+
+const toggleDark = () => {
+  isDark.value = !unref(isDark);
+};
 </script>
 
 <style scoped lang="scss">
@@ -78,8 +82,10 @@ const isDark = ref(false);
   --transition-900: 900ms;
   --transition-1000: 1000ms;
   --transition-1100: 1100ms;
-  height: 240px;
-  width: 600px;
+  --height: 240px;
+  --width: 600px;
+  height: var(--height);
+  width: var(--width);
   border-radius: var(--wrapper-radius);
   position: relative;
   box-sizing: border-box;
@@ -111,7 +117,7 @@ const isDark = ref(false);
       border-radius: var(--wrapper-radius);
 
       .eath-context {
-        --eath-size: 194px;
+        --eath-size: calc(var(--height) / 1.24);
         --eath-left: 5%;
         --eath-delay: 150ms;
         --eath-color: #fec428;
@@ -132,8 +138,8 @@ const isDark = ref(false);
         --cloud-color: #a3c5e0;
         --shadow: inset 0px 2px 5px 2px var(--white-opacity-3),
           inset -1px 5px 5px 2px var(--white-opacity-2),
-          inset -5px -5px 5px 2px rgba(0, 0, 0, 0.5),
-          8px 8px 5px 0px rgba(0, 0, 0, 0.5);
+          inset -5px -5px 5px 2px var(--black-opacity-5),
+          8px 8px 5px 0px var(--black-opacity-5);
       }
       .star-context {
         --star-color: #fff;

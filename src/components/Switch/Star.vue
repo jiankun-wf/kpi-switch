@@ -34,5 +34,11 @@ defineProps<{
   right: var(--star-right);
   font-size: var(--star-size);
   color: var(--star-color);
+  line-height: 1;
+  width: var(--star-size);
+  height: var(--star-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

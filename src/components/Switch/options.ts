@@ -175,8 +175,8 @@ export const CountingStars: Array<
     },
     staticStyle: {
       "--star-size": "3rem",
-      "--star-right": "82%",
-      "--star-top": "20%",
+      "--star-right": "86%",
+      "--star-top": "22%",
       zIndex: 9,
     },
     style: {
